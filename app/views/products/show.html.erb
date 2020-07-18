@@ -1,0 +1,32 @@
+<%= render 'layouts/usersheader' %>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+
+            <h1>商品紹介ページ</h1>
+
+                <div class="col-12">
+                    <%# <%= attachment_image_tag @product, :product_image, :fill, 60, 60, class: "", fallback: "no-image.jpg", size:'200x200' %> %>
+                    <br>
+                    商品名<br>
+                    <%= @product.name %>
+
+                    価格<br>
+                    <%= @product.price %> 円<br>
+                    
+                    商品の説明<br>
+                    <%= @product.explanation %><br>
+                    
+                    在庫<br>
+                    <%= @product.stock %><br>
+                </div>
+
+
+
+
+        </div>
+
+    </div>
+</div>

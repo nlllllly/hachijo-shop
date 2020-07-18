@@ -1,2 +1,33 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<%= render 'layouts/usersheader' %>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+
+            <h1>商品一覧ページ</h1>
+
+            <% @products.each do |product| %>
+                <div class="col-12">
+                    <%= link_to product_path(product.id) do %>
+                        <%= attachment_image_tag @product, :product_image, :fill, 60, 60, class: "", fallback: "no-image.jpg", size:'200x200' %>
+                    <% end %>
+                    <br>
+                    商品名<br>
+                    <%= link_to product_path(product.id) do %>
+                        <%= product.name %>
+                    <% end %><br>
+
+                    価格<br>
+                    <%= product.price %> 円<br>
+
+                </div>
+            <% end %>
+
+
+
+
+        </div>
+
+    </div>
+</div>

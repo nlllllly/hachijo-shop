@@ -10,7 +10,43 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require_tree ../../assets/stylesheets/.
  */
-
-
 @import "bootstrap";
+
+// メインスライダー用
+.slide1 {
+    background-image: url(slide/slide_1.jpeg);
+}
+.slide2 {
+    background-image: url(slide/image_2.jpeg);
+}
+.slide3 {
+    background-image: url(slide/image_3.jpeg);
+}
+.slide4 {
+    background-image: url(slide/image_4.jpeg);
+}
+.slide5 {
+    background-image: url(slide/image_5.jpeg);
+}
+#container{
+    height: 500px;
+}
+
+
+
+
+
+.btn-myh {
+    color: #272343;
+    background-color: #ffd803;
+}
+.btn-myh:hover {
+    top: -2px;
+    box-shadow: 0 3px 0 #d3b403;
+}
+.btn-myh:active {
+    top: 1px;
+    box-shadow: none;
+}
