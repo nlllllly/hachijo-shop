@@ -1,14 +1,12 @@
-<%= render 'layouts/usersheader' %>
-
 <div class="container">
   <div class="row">
 
-    <div class="col-md-9">
+    <div class="col-10 my-4 p-4 mx-auto" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
 
-      <h2>編集ページ <%= resource_name.to_s.humanize %></h2>
+      <h3>アカウント情報の編集</h3>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= render "users/shared/error_messages", resource: resource %>
 
         <div class="form-row">
 
@@ -76,15 +74,18 @@
         </div>
 
       <% end %>
+    </div>
 
+    <div class="col-lg my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
       
-        <h3>アカウントの削除</h3>
+      <h3>アカウントの削除</h3>
 
-        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <p>悲しいなー <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-        <%= link_to "Back", :back %>
 
     </div>
+
+      <%= link_to "Back", :back %>
 
   </div>
 </div>

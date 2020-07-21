@@ -1,4 +1,9 @@
 class CartsController < ApplicationController
+  # User以外（Admin）は全ての操作ができる。
+  # before_action :authenticate_user!, except: [:show]
+  # Admin以外（User)は「:index」「:show」のみできる
+  before_action :authenticate_admin!, except: [:show, :add_item, :update_item, :delete_item]
+
   before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
 
   def show
@@ -22,7 +27,7 @@ class CartsController < ApplicationController
     redirect_to current_cart
   end
 
-　# カート詳細画面から、「削除」を押した時のアクション
+  # カート詳細画面から、「削除」を押した時のアクション
   def delete_item
     @cart_item.destroy
     redirect_to current_cart
@@ -32,4 +37,5 @@ class CartsController < ApplicationController
 
   def setup_cart_item!
     @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+  end
 end

@@ -9,18 +9,16 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-
-  get 'carts/show'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :admins, only: [:show]
-
-  resources :products, only: [:index,:show, :new, :create]
-
+  
+  resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  
   resources :carts, only: [:show]
-
+  
   resources :users, only: [:show]
+  resources :admins, only: [:show]
 
   
   post '/add_item' => 'carts#add_item'

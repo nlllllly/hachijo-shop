@@ -1,29 +1,40 @@
-<%= render 'layouts/usersheader' %>
-
-<div class="container">
+<div class="mx-5">
     <div class="row">
 
-        <div class="col">
+        <div class="col-lg-2 mr-lg-4 my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
+            
+            <div class="input-group">
+                商品検索<br>
+                <input type="text" class="form-control" placeholder="商品検索" style="font-size: 13px;">
+                <button type="button" class="btn btn-sm btn-myh"><i class="fas fa-search"></i></button>
+            </div>
 
-            <h1>商品一覧ページ</h1>
 
-            <% @products.each do |product| %>
-                <div class="col-12">
-                    <%= link_to product_path(product.id) do %>
-                        <%= attachment_image_tag @product, :product_image, :fill, 60, 60, class: "", fallback: "no-image.jpg", size:'200x200' %>
-                    <% end %>
-                    <br>
-                    商品名<br>
-                    <%= link_to product_path(product.id) do %>
-                        <%= product.name %>
-                    <% end %><br>
+        </div>
 
-                    価格<br>
-                    <%= product.price %> 円<br>
+        <div class="col-lg my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
 
-                </div>
-            <% end %>
+            <h2>商品一覧ページ</h2>
 
+            <div class="row mx-auto">
+                <% @products.each do |product| %>
+                    <div class="m-4 p-5 border" style="background-color: #fffffe; border-radius: 10px;">
+
+                        <%= link_to product_path(product.id) do %>
+                            <%= attachment_image_tag @product, :product_image, :fill, 60, 60, class: "", fallback: "no-image.jpg", size:'200x200' %>
+                        <% end %><br>
+
+                        <%= link_to product_path(product.id) do %>
+                            <p style="color: #2d334a;"><%= product.name %></p>
+                        <% end %>
+
+                        <%= product.price %> 円<br>
+
+                        <%= link_to "商品の詳細をみる", product_path(product.id), class:"btn btn-myh" %>
+
+                    </div>
+                <% end %>
+            </div>
 
 
 

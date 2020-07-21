@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
+  # UserもAdminもここで一度、ログインができていないと全ての操作ができないように制御
   before_action :authenticate_user!
+  before_action :authenticate_admin!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # CSRF対策用　<%= csrf_meta_tags %> で埋め込める

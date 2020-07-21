@@ -1,32 +1,50 @@
-<%= render 'layouts/usersheader' %>
-
-<div class="container">
+<div class="mx-5">
     <div class="row">
 
-        <div class="col">
 
-            <h1>商品紹介ページ</h1>
-
-                <div class="col-12">
-                    <%# <%= attachment_image_tag @product, :product_image, :fill, 60, 60, class: "", fallback: "no-image.jpg", size:'200x200' %> %>
-                    <br>
-                    商品名<br>
-                    <%= @product.name %>
-
-                    価格<br>
-                    <%= @product.price %> 円<br>
-                    
-                    商品の説明<br>
-                    <%= @product.explanation %><br>
-                    
-                    在庫<br>
-                    <%= @product.stock %><br>
-                </div>
-
-
+        <div class="col-lg-2 mr-lg-3 my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
+            
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="商品検索" style="font-size: 13px;">
+                <button type="button" class="btn btn-sm btn-myh"><i class="fas fa-search"></i></button>
+            </div>
 
 
         </div>
+
+        
+
+
+        <div class="col-lg my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
+
+            <div class="row mx-auto">
+                <div class="col-lg" style="background-color: #fffffe;">
+                    <%= attachment_image_tag @product, :product_image, :fill, 60, 60, class: "", fallback: "no-image.jpg", size:'350x350' %>
+                </div>
+
+                <div class="col-lg-7 p-2">
+                        <h2><%= @product.name %></h2>
+
+                        価格
+                        <h4><%= @product.price %> 円</h4>
+
+                        商品の説明<br>
+                        <p><%= @product.explanation %></p>
+
+
+
+                            個数
+                            カートに商品を追加するボタンを作成する。
+                            <p><%= link_to "カートに追加する", add_item_path, method: :post, class:"btn btn-myh" %><p>
+
+                    
+                </div>
+
+            </div>
+        </div>
+
+
+
 
     </div>
 </div>

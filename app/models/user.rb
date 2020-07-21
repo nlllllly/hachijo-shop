@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :carts, dependent: :destroy
+
   validates :last_name_roman, presence: true, length: { minimum:1, maximum:20 }
   validates :first_name_roman, presence: true, length: { minimum:1, maximum:20 }
   validates :last_name, presence: true, length: { minimum:1, maximum:20 }

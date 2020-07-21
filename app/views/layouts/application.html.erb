@@ -1,18 +1,235 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>HachijoShop</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body style="background-color: #fffffe;">
+<body style="background-color: #fffffe; padding-top: 100px;">
+
+    <%# ヘッダー %>
+    <header class="header">
+        <% if user_signed_in? %>
+            <%# 利用者用ヘッダー %>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light p-3" style="background-color: #bae8e8; border-bottom: 3px solid #272343; border-top: 3px solid #272343;">
+                <%# ロゴ %>
+                <%= link_to "Hachijo-shop", root_path, class:"navbar-brand mx-2", :style=>"color: #272343;" %>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto ml-4">
+                    <li class="nav-item mx-1">
+                        <%= link_to "ホーム", root_path, class:"nav-link"%>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <%= link_to "商品一覧", products_path, class:"nav-link"%>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+
+                    <li class="nav-item mx-3">
+                        <%= link_to cart_path(current_cart) do %>
+                            <i class="fas fa-shopping-cart m-1" aria-hidden="true" style="font-size: 30px; color: #272343;"></i>
+                        <% end %>
+                    </li>
+
+                    <li class="nav-item mx-3 dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%= current_user.email %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <%= link_to "マイページ", user_path(current_user.id), class:"dropdown-item" %>
+                            <%= link_to "ショッピングカート", cart_path(current_cart), class:"dropdown-item" %>
+                            <div class="dropdown-divider"></div>
+                            <%= link_to "サインアウト", destroy_user_session_path, method: 'DELETE', class:"dropdown-item" %>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+
+        <% elsif admin_signed_in? %>
+            <%# 管理者用ヘッダー %>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-3" style="background-color: #000000;">
+                <%# ロゴ %>
+                <%= link_to "Hachijo-Shop管理者ページ", root_path, class:"navbar-brand"%>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto ml-4">
+                        <li class="nav-item mx-1">
+                            <%= link_to "管理者ホーム", root_path, class:"nav-link"%>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <%= link_to "商品管理一覧", products_path, class:"nav-link"%>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-3 dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            管理者
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <%= link_to "マイページ", admin_path(current_admin.id), class:"dropdown-item" %>
+                            <%= link_to "テスト", root_path, class:"dropdown-item" %>
+                            <div class="dropdown-divider"></div>
+                            <%= link_to "サインアウト", destroy_admin_session_path, method: 'DELETE', class:"dropdown-item" %>
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+        <% else %>
+
+            <%# ゲスト用ヘッダー %>
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-3" style="background-color: #bae8e8; border-bottom: 3px solid #272343; border-top: 3px solid #272343;">
+                <%# ロゴ %>
+                <%= link_to "Hachijo-shop", root_path, class:"navbar-brand", :style=>"color: #272343;" %></i>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto ml-4">
+                        <li class="nav-item mx-1">
+                            <%= link_to "ホーム", root_path, class:"nav-link"%>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-3">
+                            <%= link_to cart_path(current_cart) do %>
+                                <i class="fas fa-shopping-cart m-1" aria-hidden="true" style="font-size: 30px; color: #272343;"></i>
+                            <% end %>
+                        </li>                        
+                        <li class="nav-item mx-3 dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ログイン / 会員登録 
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <%= link_to "ログイン", new_user_session_path, class:"dropdown-item" %>
+                                <div class="dropdown-divider"></div>
+                                <%= link_to "会員登録", new_user_registration_path, class:"dropdown-item" %>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        <% end %>
+    </header>
 
 
     <%= yield %>
+
+
+
+    <%# フッター  %>
+    <footer class="footer" style="background-color: #2d334a; border-top: 3px solid #272343;">
+
+        <section class="cta bg-blue-grey text-white py-4 border-bottom border-secondary">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6><b>Want more?</b> Exclusive deals, the latest news: Our Newsletter</h6>
+                            </li>
+                            <li class="list-inline-item">
+                                <button type="button" class="btn btn-outline-info ">Sign UP</button>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="footer bg-blue-grey text-grey ">
+            <div class="container py-5">
+            <div class="row d-flex ">
+                    <div class="col-12 col-md-3 col-sm-6 col-xs-6">
+                        <h6 class="text-info">Company</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-grey">How it works?</a></li>
+                            <div class="mt-2"></div>
+                            <li><a href="#" class="text-grey">Get the app</a></li>
+                            <div class="mt-2"></div>
+                            <li><a href="#" class="text-grey">Terms of Service</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 col-sm-6 col-xs-6">
+                        <h6 class="text-info">Company</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-grey">How it works?</a></li>
+                            <div class="mt-2"></div>
+                            <li><a href="#" class="text-grey">Get the app</a></li>
+                            <div class="mt-2"></div>
+                            <li><a href="#" class="text-grey">Terms of Service</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 col-sm-6 col-xs-6">
+                        <h6 class="text-info">Company</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-grey">How it works?</a></li>
+                            <div class="mt-2"></div>
+                            <li><a href="#" class="text-grey">Get the app</a></li>
+                            <div class="mt-2"></div>
+                            <li><a href="#" class="text-grey">Terms of Service</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3 col-sm-6 col-xs-6">
+                        <h6 class="text-info">Company</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-grey">How it works?</a></li>
+                            <div class="mt-2"></div>
+                            <li><a href="#" class="text-grey">Get the app</a></li>
+                            <div class="mt-2"></div>
+                            <li><a href="#" class="text-grey">Terms of Service</a></li>
+
+                        </ul>
+                    </div>
+                
+                    
+                </div>
+        </div>
+            <div class="copyright text-center py-3 bg-blue-grey border-top border-secondary">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-white">
+                        © 2019 NextApp. All Rights Reserved
+                    </div>
+                    <div class="col-md-6 text-white">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">follow us on :</li>
+                            <li class="list-inline-item"><a href="#" class="text-primary"><i class="fa fa-facebook mr-1"></i>facebook</a></li>
+                            <li class="list-inline-item"><a href="#" class="text-info"><i class="fa fa-twitter mr-1"></i>Twitter</a></li>
+                            <li class="list-inline-item"><a href="#" class="text-danger"><i class="fa fa-youtube mr-1"></i>Youtube</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+    </footer>
 
 
   </body>

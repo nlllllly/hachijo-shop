@@ -13,40 +13,42 @@
  *= require_tree ../../assets/stylesheets/.
  */
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 // メインスライダー用
 .slide1 {
-    background-image: url(slide/slide_1.jpeg);
+    background-image: url(slides/slide_1.jpeg);
 }
 .slide2 {
-    background-image: url(slide/image_2.jpeg);
+    background-image: url(slides/slide_2.jpeg);
 }
 .slide3 {
-    background-image: url(slide/image_3.jpeg);
+    background-image: url(slides/slide_3.jpeg);
 }
 .slide4 {
-    background-image: url(slide/image_4.jpeg);
+    background-image: url(slides/slide_4.jpeg);
 }
 .slide5 {
-    background-image: url(slide/image_5.jpeg);
+    background-image: url(slides/slide_5.jpeg);
+}
+.slide6 {
+    background-image: url(slides/slide_6.jpeg);
 }
 #container{
-    height: 500px;
+    height: 550px;
 }
 
 
 
 
-
+// btn
 .btn-myh {
     color: #272343;
     background-color: #ffd803;
 }
 .btn-myh:hover {
     top: -2px;
-    box-shadow: 0 3px 0 #d3b403;
-}
-.btn-myh:active {
-    top: 1px;
-    box-shadow: none;
+    box-shadow: 1px 1px 2px gray;
+    transition: .2s;
 }
