@@ -3,13 +3,15 @@
 
         <%= render 'layouts/search' %>
 
-        <div class="col my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
 
-            <h3>商品一覧ページ</h3>
+        <div class="col-lg my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
 
-            <div class="row">
+            <h4><%= notice %></h4>
+
+            <div class="row mx-auto">
                 <% @products.each do |product| %>
-                    <div class="col m-4 p-5 border" style="background-color: #fffffe; border-radius: 10px;">
+
+                    <div class="m-4 p-5 border" style="background-color: #fffffe; border-radius: 10px;">
 
                         <%= link_to product_path(product.id) do %>
                             <%= attachment_image_tag @product, :product_image, :fill, 60, 60, class: "", fallback: "no-image.jpg", size:'200x200' %>
@@ -23,16 +25,10 @@
 
                         <%= link_to "商品の詳細をみる", product_path(product.id), class:"btn btn-myh" %>
 
-
                     </div>
                 <% end %>
             </div>
 
-                <div class="row">
-                    <div class="mx-auto mt-4">
-                        <%= paginate @products %>
-                    </div>
-                </div>
         </div>
 
     </div>

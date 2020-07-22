@@ -20,7 +20,7 @@
             <%= form_for @product do |f| %>
                 <div class="field form-group col-6">
                     <%= f.label :name, "商品名" %><br>
-                    <%= f.text_field :name, autocomplete: "name", placeholder:"くさや", class:"col-md-10" %>
+                    <%= f.text_field :name, autocomplete: "name", placeholder:"", class:"col-md-10" %>
                 </div>
 
                 <div class="field form-group col-6">    
@@ -30,24 +30,24 @@
 
                 <div class="field form-group col-6">
                     <%= f.label :price, "価格" %><br>
-                    <%= f.text_field :price, autocomplete: "price", placeholder:"1000",  class:"col-5" %> 円
+                    <%= f.text_field :price, autocomplete: "price", placeholder:"",  class:"col-5" %> 円
                 </div>
 
                 <div class="field form-group col-6">
                     <%= f.label :explanation, "商品説明（200文字以内）" %><br>
-                    <%= f.text_area :explanation, autocomplete: "explanation", placeholder:"美味しいくさやだよ",  class:"col-md-10" %>
+                    <%= f.text_area :explanation, autocomplete: "explanation", placeholder:"",  class:"col-md-10" %>
                 </div>
 
                 <div class="field form-group col-6">
                     <%= f.label :stock, "ストック数" %><br>
-                    <%= f.text_field :stock, autocomplete: "stock", placeholder:"100",  class:"col-5" %> 個
+                    <%= f.text_field :stock, autocomplete: "stock", placeholder:"",  class:"col-5" %> 個
                 </div>
                 <div class="actions form-group">
                     <%= f.submit "登録する", class:"btn btn-myh" %>
                 </div>
             <% end %>
             <br>
-            <p><%= link_to 'Show', products_path %> | <%= link_to 'Back', products_path %></p>
+            <p><%= link_to '販売商品一覧ページ', products_path %> | <%= link_to 'ホームへ戻る', admins_path %></p>
 
         </div>
 

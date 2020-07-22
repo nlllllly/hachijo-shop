@@ -1,0 +1,26 @@
+        
+        
+<div class="col-lg-2 mr-lg-4 my-4 py-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
+    
+    <div class="search-form">
+        <h6>商品検索</h6>
+            <%= form_with url: search_products_path, method: :get, local: true do |f| %>
+                <%= f.text_field :name, placeholder:"", class:"col-12" %>
+                <%= f.button :type => 'submit', class:'btn btn-sm btn-myh col-12' do %><i class="fas fa-search"></i><% end %>
+            <% end %>
+    </div>
+
+    <div class="mt-4"></div>
+    
+    <div class="search-form">
+        <h6>カテゴリ別検索</h6>
+            <%= form_with url: search_products_path, method: :get, local: true do |f| %>
+                <%= f.select :name, placeholder:"", class:"col-12" %>
+                <%= f.button :type => 'submit', class:'btn btn-sm btn-myh col-12' do %><i class="fas fa-search"></i><% end %>
+            <% end %>
+
+    </div>
+
+
+</div>
+

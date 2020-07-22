@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+    @products = Product.page(params[:page]).per(30)
   end
   def show
     @product = Product.find(params[:id])
@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   end
   def create
     @product = Product.new(product_params)
-    @product.admin_id = current_user.id
+    @product.admin_id = current_admin.id
     if @product.save
       redirect_to products_path
     else
@@ -34,14 +34,21 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
     redirect_to products_path
-
+  end
+  def search
+    if params[:name].present?
+      @products = Product.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      flash[:notice] = "ヒットしませんでした"
+      @products = Product.none
+    end
   end
 
 
 
   private
     def product_params
-      params.require(:product).permit(:name, :price, :explanation, :stock, :admin_id, :product_image_id)
+      params.require(:product).permit(:name, :price, :explanation, :stock, :admin_id, :product_image)
     end
 
   

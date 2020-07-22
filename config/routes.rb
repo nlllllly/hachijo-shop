@@ -13,12 +13,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   
-  resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy] do 
+    get :search, on: :collection
+  end
   
   resources :carts, only: [:show]
   
   resources :users, only: [:show]
-  resources :admins, only: [:show]
+  resources :admins, only: [:index, :show]
 
   
   post '/add_item' => 'carts#add_item'

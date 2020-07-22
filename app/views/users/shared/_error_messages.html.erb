@@ -1,11 +1,12 @@
 <% if resource.errors.any? %>
   <div class="alert alert-danger" role="danger" id="error_explanation">
-    <h4 class="alert-heading">
-      <%= I18n.t("errors.messages.not_saved",
+    <h5 class="alert-heading">
+      項目に誤りがあります。確認してください。
+      <%# <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
                  resource: resource.class.model_name.human.downcase)
        %>
-    </h2>
+    </h5>
     <ul>
       <% resource.errors.full_messages.each do |message| %>
         <li><%= message %></li>

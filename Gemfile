@@ -72,8 +72,11 @@ gem 'bootstrap', '~> 4.1.3'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jquery-turbolinks'
 
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 gem 'font-awesome-sass'
+
+gem 'kaminari'
