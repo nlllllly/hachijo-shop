@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:show]
   
   resources :users, only: [:show]
-  resources :admins, only: [:index, :show]
+  resources :admins, only: [:index]
 
   
   post '/add_item' => 'carts#add_item'

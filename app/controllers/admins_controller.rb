@@ -4,8 +4,8 @@ class AdminsController < ApplicationController
   # Admin以外（User）は一切のアクセスができない
   before_action :authenticate_admin!
 
+  
   def index
-
   end
   def show
     @admin = Admin.find(params[:id])

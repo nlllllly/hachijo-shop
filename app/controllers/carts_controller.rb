@@ -1,8 +1,8 @@
 class CartsController < ApplicationController
-  # User以外（Admin）は全ての操作ができる。
-  # before_action :authenticate_user!, except: [:show]
-  # Admin以外（User)は「:index」「:show」のみできる
-  before_action :authenticate_admin!, except: [:show, :add_item, :update_item, :delete_item]
+
+  # 非会員でも「:show」（カートページ）はログインしなくてもアクセスできるようにする。
+  skip_before_action :authenticate_user!, only: [:show, :add_item, :update_item, :delete_item]
+  skip_before_action :authenticate_admin!, only: [:show, :add_item, :update_item, :delete_item]
 
   before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
 

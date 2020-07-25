@@ -7,21 +7,23 @@
 
             <h3>商品一覧ページ</h3>
 
-            <div class="row">
+            <div class="row mx-auto">
                 <% @products.each do |product| %>
-                    <div class="col m-4 p-5 border" style="background-color: #fffffe; border-radius: 10px;">
+                    <div class="mx-auto m-4 p-4 border" style="background-color: #fffffe; border-radius: 10px;">
+                        
+                        <div class="col">
+                            <%= link_to product_path(product.id) do %>
+                                <%= attachment_image_tag product, :product_image, :fill, 200, 200, class: "", fallback: "no-image.jpg", size:'200x200' %>
+                            <% end %><br>
+                            <div class="pt-1"></div>
+                            <%= link_to product_path(product.id) do %>
+                                <h5 style="color: #2d334a;"><%= product.name %></h5>
+                            <% end %>
 
-                        <%= link_to product_path(product.id) do %>
-                            <%= attachment_image_tag @product, :product_image, :fill, 60, 60, class: "", fallback: "no-image.jpg", size:'200x200' %>
-                        <% end %><br>
+                            <%= product.price %> 円<br>
 
-                        <%= link_to product_path(product.id) do %>
-                            <p style="color: #2d334a;"><%= product.name %></p>
-                        <% end %>
-
-                        <%= product.price %> 円<br>
-
-                        <%= link_to "商品の詳細をみる", product_path(product.id), class:"btn btn-myh" %>
+                            <%= link_to "商品の詳細をみる", product_path(product.id), class:"btn btn-myh col-12" %>
+                        </div>
 
 
                     </div>

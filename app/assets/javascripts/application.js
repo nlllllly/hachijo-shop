@@ -17,9 +17,11 @@
 //= require rails-ujs
 //= require_tree ../../assets/javascripts/.
 //= require_tree .
+
+// メインスライダー
 $(function(){
 
-  $(document).on('turbolinks:load', function() {
+  // $(document).on('turbolinks:load', function() {
 
     $("document").ready(function() {
       
@@ -48,6 +50,17 @@ $(function(){
       });
     });
 
-  });
+  // });
 
+});
+
+
+// ページトップへ戻るボタンのアクション
+$(function() {
+  $('#back a').on('click',function(event){
+    $('body, html').animate({
+      scrollTop:0
+    }, 800);
+    event.preventDefault();
+  });
 });

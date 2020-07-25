@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Admins::RegistrationsController < Devise::RegistrationsController
+
+  # 管理者情報更新後に、管理者ホームへ飛ばす
+  def after_update_path_for(resource)
+    admins_path
+  end
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 

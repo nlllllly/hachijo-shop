@@ -1,14 +1,20 @@
 class ProductsController < ApplicationController
+  # 非会員でも「:index, :show, :search」を可能にする。
+  skip_before_action :authenticate_user!, only: [:index, :show, :search]
+  skip_before_action :authenticate_admin!, only: [:index, :show, :search]
   # User以外（Admin）は全ての操作ができる。
-  before_action :authenticate_user!, except: [:index, :show, :new, :create, :edit, :update, :destroy]
+  # before_action :authenticate_user!, except: [:index, :show, :new, :create, :edit, :update, :destroy, :search]
   # Admin以外（User)は「:index」「:show」のみできる
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+  # before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @products = Product.page(params[:page]).per(30)
   end
   def show
     @product = Product.find(params[:id])
+    
+    @cart_item = current_cart.cart_items.build(product_id: params[:product_id])
+
   end
   def new
     @product = Product.new
@@ -37,10 +43,9 @@ class ProductsController < ApplicationController
   end
   def search
     if params[:name].present?
-      @products = Product.where('name LIKE ?', "%#{params[:name]}%")
+      @products = Product.page(params[:page]).per(30).where('name LIKE ?', "%#{params[:name]}%")
     else
-      flash[:notice] = "ヒットしませんでした"
-      @products = Product.none
+      @products = Product.page(params[:page]).per(30).none
     end
   end
 

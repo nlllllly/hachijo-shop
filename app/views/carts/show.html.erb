@@ -1,14 +1,35 @@
+    <div class="mx-5">
+    <div class="row">
+
+        <div class="col my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
+            <h1>カート一覧</h1>
+
+            <div class="row p-4">
+
+                <div class="col-4">
+                    <%= attachment_image_tag @product, :product_image, :fill, 100, 100, class: "", fallback: "no-image.jpg", size:'100x100' %>
+                </div>
+                <div class="col-8">
+                    <%= @cart_items.each do |item| %>
+                        <%= item.product.name %>
+                        <%= item.quantity %>
+                        <%= item.product.price %>
+                    <% end %>
+                        <p>商品名</p>
+                        <p>商品の価格</p>
+                </div>
+            </div>
+            <div class="border-top border-secondary" style="padding: 10px;"></div>
+
+            <div class="row p-4">
+                <div class="btn-lg btn-danger">購入手続きに進む</div>
+            </div>
 
 
-<h1>カート一覧</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+        </div>
 
 
-    <%= @cart_items.each do |item| %>
 
 
-        <%= item.quantity %>
-        <%= item.product_id %>
-
-
-    <% end %>
+    </div>
+</div>
