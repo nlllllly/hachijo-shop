@@ -1,0 +1,9 @@
+<%# メッセージ通知（noticeだったら「緑」で背景あり、alertだったら「赤」で通知） %>
+<% flash.each do |name, msg| %>
+    <% if name == "notice" %>
+        <div class="flash-back"></div>
+        <%= content_tag :div, msg, :class => "flash-notice alert alert-success" if msg.is_a?(String) %>
+    <% elsif name == "alert" %>
+        <%= content_tag :div, msg, :class => "flash-alert alert alert-danger" if msg.is_a?(String) %>
+    <% end %>
+<% end %>

@@ -64,3 +64,14 @@ $(function() {
     event.preventDefault();
   });
 });
+
+
+// _flash-notice用
+$(function(){
+  setTimeout("$('.flash-notice, .flash-back').fadein('slow')", 500) 
+  setTimeout("$('.flash-notice, .flash-back').fadeOut('slow')", 2000) 
+})
+// flash-alert用
+$(function(){
+  setTimeout("$('.flash-alert, .flash-back').fadein('slow')", 500) 
+})

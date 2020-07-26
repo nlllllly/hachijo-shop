@@ -3,9 +3,8 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :search]
   skip_before_action :authenticate_admin!, only: [:index, :show, :search]
   # User以外（Admin）は全ての操作ができる。
-  # before_action :authenticate_user!, except: [:index, :show, :new, :create, :edit, :update, :destroy, :search]
-  # Admin以外（User)は「:index」「:show」のみできる
-  # before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :search, :new, :create, :edit, :update, :destroy]
+
 
   def index
     @products = Product.page(params[:page]).per(30)
@@ -13,7 +12,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     
-    @cart_item = current_cart.cart_items.build(product_id: params[:product_id])
+    @cart_item = CartItem.new
 
   end
   def new
@@ -53,7 +52,7 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:name, :price, :explanation, :stock, :admin_id, :product_image)
+      params.require(:product).permit(:name, :price, :explanation, :stock, :admin_id, :product_image, :category)
     end
 
   

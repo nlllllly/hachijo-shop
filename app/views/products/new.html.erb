@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="field form-group col-6">    
-                    <%= f.label :product_image, "商品写真" %>
+                    <%= f.label :product_image, "商品写真" %><br>
                     <%= f.attachment_field :product_image %>
                 </div>
 
@@ -33,6 +33,11 @@
                     <%= f.text_field :price, autocomplete: "price", placeholder:"",  class:"col-5" %> 円
                 </div>
 
+                <div class="field form-group col-6">
+                    <%= f.label :category, "商品カテゴリ" %><br>
+                    <%= f.select :category, ['島のお酒', '島の食べ物', '島のドリンク', '島のフルーツ' ,'島のおすすめ'], {include_blank: "カテゴリ選択"}, autocomplete: "category", class:"col-md-10" %>
+                </div>
+                
                 <div class="field form-group col-6">
                     <%= f.label :explanation, "商品説明（200文字以内）" %><br>
                     <%= f.text_area :explanation, autocomplete: "explanation", placeholder:"",  class:"col-md-10" %>

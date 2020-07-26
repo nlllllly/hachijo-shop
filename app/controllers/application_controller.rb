@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  # flashの名前を以下の4つのみにする
+  add_flash_types :success, :info, :warning, :danger
   # UserもAdminもここで一度、ログインができていないと全ての操作ができないように制御
   before_action :authenticate_user!
   before_action :authenticate_admin!
