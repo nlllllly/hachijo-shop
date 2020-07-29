@@ -1,0 +1,39 @@
+<div class="mx-5">
+    <div class="row">
+
+
+
+        <div class="col-lg my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
+
+            <div class="row p-4">
+                <div class="" style="background-color: #fffffe;">
+                    <%= attachment_image_tag @producer, :producer_image, :fill, 350, 350, class: "", fallback: "no-image.jpg", size:'350x350' %>
+                </div>
+                <div class="col-md-5 p-3">
+                    <h2><%= @producer.producer_name %></h2>
+
+                    URL
+                    <h4><%= @producer.url %></h4>
+
+
+
+                </div>
+            </div>
+            <div class="row mx-auto">
+                <div class="col px-2">
+                        説明<br>
+                        <p><%= @producer.explanation %></p>
+
+                </div>
+            </div>
+
+                    <% if admin_signed_in? %>
+                        <%= link_to "編集", edit_admins_producer_path(@producer.id), class:"btn btn-success" %>
+                    <% end %>
+        </div>
+
+
+
+
+    </div>
+</div>

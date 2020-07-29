@@ -1,0 +1,35 @@
+
+<div class="container">
+    <h3>生産者一覧</h3>
+    
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>生産者名</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @producers.each do |producer| %>
+                        <tr>
+                            <td><%= producer.id %></td>
+                            <td><%= producer.producer_name %></td>
+                            <td><%= link_to "編集", edit_admins_producer_path(producer.id), class:"btn-sm btn-success" %></td>
+                            <td><%= link_to "削除", admins_producer_path(producer.id), class:"btn-sm btn-danger", method:"delete", data:{ confirm: "本当に削除しますか？" } %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-auto mt-4">
+            <%= paginate @producers %>
+        </div>
+    </div>
+</div>

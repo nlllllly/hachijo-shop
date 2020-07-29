@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
@@ -9,23 +10,34 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
+
   root 'home#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # ユーザ用
+  resources :producers, only: [:show] do
+    get :list, on: :collection
+  end
+  resources :products, only: [:show] do 
+    get :list, on: :collection
+    get :search, on: :collection
+  end
   
-    resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy] do 
-      get :search, on: :collection
-    end
-
+  # カート関連 
   resources :carts, only: [:show]
-  
   resources :users, only: [:show]
-  resources :admins, only: [:index]
-
-  
   post '/add_item' => 'carts#add_item'
   post '/update_item' => 'carts#update_item'
   delete '/delete_item' => 'carts#delete_item'
+  
+  
+
+  # 管理者がアクセスするページは全て「/admins/xxx/」にする
+  resource :admins, only: [:index] do
+    get '/' => 'admins#index'
+    get '/customers' => 'users#index'
+    resources :producers, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :products, only: [:index, :new, :create, :edit, :update, :destroy] 
+  end
   
 
 end

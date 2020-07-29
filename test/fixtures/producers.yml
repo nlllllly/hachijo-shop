@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  producer_name: MyString
+  explanation: MyText
+  url: MyString
+  producer_image_id: 1
+
+two:
+  producer_name: MyString
+  explanation: MyText
+  url: MyString
+  producer_image_id: 1

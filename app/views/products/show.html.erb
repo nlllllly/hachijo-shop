@@ -21,10 +21,6 @@
                         <%= f.submit "カートに追加する", class:"btn btn-myh" %>
                     <% end %>
 
-                    <% if admin_signed_in? %>
-                        <%= link_to "編集", edit_product_path(@product.id), class:"btn btn-success" %>
-                        <p>残り　<%= @product.stock %>　個のストックがあります。</p>
-                    <% end %>
 
                 </div>
             </div>

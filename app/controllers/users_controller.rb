@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   # Admin以外（User）は「:show」「:new」「:create」「:edit」「:update」「:destroy」のみアクセスできる。
   before_action :authenticate_admin!, only: [:index]
 
+  def index
+    @users = User.page(params[:page]).per(30)
+  end
   def show
     @user = User.find(params[:id])
   end

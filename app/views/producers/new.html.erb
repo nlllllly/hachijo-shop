@@ -1,0 +1,51 @@
+<div class="mx-5">
+    <div class="row">
+
+        <div class="col-12">
+
+            <h1>生産者入力ページ</h1>
+
+            <% if @producer.errors.any? %>
+                <div id="error_explanation" style="color: red">
+                    <h3><%= @producer.errors.count%> errors prohibited this obj from being saved:</h3>
+                    <ul>
+                        <% @producer.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+
+            <%= form_for(@producer, url: admins_producers_path) do |f| %>
+                <div class="field form-group col-6">
+                    <%= f.label :producer_name, "生産者名" %><br>
+                    <%= f.text_field :producer_name, autocomplete: "producer_name", placeholder:"", class:"col-lg-10" %>
+                </div>
+
+                <div class="field form-group col-6">    
+                    <%= f.label :producer_image, "生産者の方の写真" %><br>
+                    <%= f.attachment_field :producer_image %>
+                </div>
+
+                
+                <div class="field form-group col-6">
+                    <%= f.label :explanation, "生産者の方の説明" %><br>
+                    <%= f.text_area :explanation, autocomplete: "explanation", placeholder:"",  class:"col-lg-10" %>
+                </div>
+
+                <div class="field form-group col-6">
+                    <%= f.label :url, "生産者の方のURL" %><br>
+                    <%= f.text_field :url, autocomplete: "url", placeholder:"",  class:"col-lg-10" %>
+                </div>
+                <div class="actions form-group">
+                    <%= f.submit "登録する", class:"btn btn-myh" %>
+                </div>
+            <% end %>
+            <br>
+            <p><%= link_to '生産者一覧ページ', admins_producers_path %> | <%= link_to 'ホームへ戻る', admins_path %></p>
+
+        </div>
+
+    </div>
+</div>

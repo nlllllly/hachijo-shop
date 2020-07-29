@@ -18,27 +18,35 @@
 
 body {
     font-family: 'M PLUS 1p', sans-serif;
+    color: #2d334a;
     font-size: 14px;
 }
 h1 {
+    color: #2d334a;
     font-size: 32px;
 }
 h2 {
+    color: #2d334a;
     font-size: 28px;
 }
 h3 {
+    color: #2d334a;
     font-size: 24px;
 }
 h4 {
+    color: #2d334a;
     font-size: 22px;
 }
 h5 {
+    color: #2d334a;
     font-size: 20px;
 }
 h6 {
+    color: #2d334a;
     font-size: 18px;
 }
 p {
+    color: #2d334a;
     font-size: 13px;
 }
 
@@ -62,8 +70,43 @@ p {
     background-image: url(slides/slide_6.jpeg);
 }
 #container{
-    height: 550px;
+    height: 590px;
 }
+
+
+.hachijo-img {
+    background-image: url(slides/b_hachijo.png);
+    background-position: center;
+    background-size: cover;
+    width: 450px;
+    height: 330px;
+    position: fixed;
+    top: 30%;
+    // left: 10%;
+    // transform: translate(-50%, -50%);
+    z-index: 20;
+}
+
+.contents {
+    position: relative;
+    width: 100%;
+    height: 5px;
+}
+
+.line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 0;
+    height: 5px;
+    background: #ff5f03;
+}
+
+
+  
+
 // トップへ戻るボタン
 #back {
     position: fixed;
@@ -85,7 +128,6 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-
   }
 .flash-alert {
     position: fixed;
@@ -97,7 +139,6 @@ p {
   }
 
 
-
 // オリジナルbtn
 .btn-myh {
     color: #272343;
@@ -107,4 +148,26 @@ p {
     top: -2px;
     box-shadow: 1px 1px 2px gray;
     transition: .2s;
+}
+
+// 商品用
+._product {
+    background-color: #fffffe;
+    border-radius: 10px;
+    transition-duration: .2s;
+}
+
+._product:hover {
+    top: -6px;
+    box-shadow: 0px 2px 4px 2px #c0bdd1;
+    transition: .2s;
+}
+
+
+.footer-hachijo-img {
+    background-image: url(slides/y_hachijo.png);
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 220px;
 }

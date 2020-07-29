@@ -55,15 +55,71 @@ $(function(){
 });
 
 
-// ページトップへ戻るボタンのアクション
+// ページトップへ「戻るボタン」（上がボタン自体の表示と非表示・下がクリックした時の動作）
 $(function() {
-  $('#back a').on('click',function(event){
+  var backBtn = $('#back a')
+  backBtn.hide();
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 100) {
+      backBtn.fadeIn(300);
+    } else {
+      backBtn.fadeOut(300);
+    }
+  });
+  backBtn.on('click',function(event){
     $('body, html').animate({
       scrollTop:0
     }, 800);
-    event.preventDefault();
+  event.preventDefault();
   });
 });
+
+// 「hachijo-img」の「leftIn」モーション
+$(function () {
+  $('div.hachijo-img').each(function () {
+    var $win = $(window),
+        $winH = $win.height(),
+        $connect = $(this),
+        position = $connect.offset().top,
+        current = 0,
+        scroll;
+    $win.on('load scroll', function () {
+      scroll = $win.scrollTop();
+      current = (scroll / $winH) * 2 * 10;
+      if (current > 99.9) {
+        current = 50;
+      }
+      if (scroll > position - $winH) {
+        $connect.css({width: current + '%'});
+      }
+    });
+  });
+});
+
+// lineを表示するやーつ
+$(function () {
+  $('div.line').each(function () {
+    var $win = $(window),
+        $winH = $win.height(),
+        $connect = $(this),
+        position = $connect.offset().top,
+        current = 0,
+        scroll;
+    $win.on('load scroll', function () {
+      scroll = $win.scrollTop();
+      current = (1 - (position - scroll) / $winH) * 2 * 50;
+      if (current > 99.9) {
+        current = 100;
+      }
+      if (scroll > position - $winH) {
+        $connect.css({width: current + '%'});
+      }
+    });
+  });
+});
+
+
+
 
 
 // _flash-notice用
@@ -73,5 +129,6 @@ $(function(){
 })
 // flash-alert用
 $(function(){
-  setTimeout("$('.flash-alert, .flash-back').fadein('slow')", 500) 
+  setTimeout("$('.flash-alert').fadein('slow')", 500) 
+  setTimeout("$('.flash-alert').fadeOut('slow')", 3000) 
 })
