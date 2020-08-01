@@ -7,14 +7,14 @@ class ProducersController < ApplicationController
 
 
   def index
-    @producers = Producer.page(params[:page]).per(30)
+    @producers = Producer.page(params[:page]).per(10)
   end
 
   def show
     @producer = Producer.find(params[:id])
   end
   def list
-    @producers = Producer.page(params[:page]).per(30)
+    @producers = Producer.page(params[:page]).per(10)
   end
 
   def new
@@ -22,21 +22,27 @@ class ProducersController < ApplicationController
   end
   def create
     @producer = Producer.new(producer_params)
-    @producer.save
-    redirect_to admins_producers_path
+    if @producer.save
+      redirect_to admins_producers_path, notice: '登録が完了しました！'
+    else
+      render :new
+    end
   end
   def edit
     @producer = Producer.find(params[:id])
   end
   def update
     @producer = Producer.find(params[:id])
-    @producer.update(producer_params)
-    redirect_to admins_producers_path
+    if @producer.update(producer_params)
+      redirect_to admins_producers_path, notice: '更新が完了しました！'
+    else
+      render :edit
+    end
   end
   def destroy
     @producer = Producer.find(params[:id])
     @producer.destroy
-    redirect_to admins_producers_path
+    redirect_to admins_producers_path, notice: '削除が完了しました！'
   end
 
   private

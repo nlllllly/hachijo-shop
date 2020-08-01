@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
 
   def index
-    @products = Product.page(params[:page]).per(30)
+    @products = Product.page(params[:page]).per(10)
   end
   
   def show
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.admin_id = current_admin.id
     if @product.save
-      redirect_to admins_products_path
+      redirect_to admins_products_path, notice: '登録が完了しました！'
     else
       render :new
     end
@@ -37,13 +37,16 @@ class ProductsController < ApplicationController
   end
   def update
     @product = Product.find(params[:id])
-    @product.update(product_params)
-    redirect_to admins_products_path
+    if @product.update(product_params)
+      redirect_to admins_products_path, notice: '更新が完了しました！'
+    else
+      render :edit
+    end
   end
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to admins_products_path
+    redirect_to admins_products_path, notice: '削除が完了しました！'
   end
   def search
     if params[:name].present?
@@ -57,7 +60,7 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:name, :price, :explanation, :stock, :admin_id, :product_image, :category, :producer_id)
+      params.require(:product).permit(:name, :price, :explanation, :stock, :admin_id, :product_image, :category_id, :producer_id)
     end
 
   

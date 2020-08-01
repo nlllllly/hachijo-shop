@@ -1,21 +1,12 @@
-<div class="container">
-    <div class="row">
+<div class="container border my-3">
+    <div class="row m-3">
 
         <div class="col">
 
             <h3>商品入力ページ</h3>
 
-            <% if @product.errors.any? %>
-                <div id="error_explanation" style="color: red">
-                    <h3><%= @product.errors.count%> errors prohibited this obj from being saved:</h3>
-                    <ul>
-                        <% @product.errors.full_messages.each do |message| %>
-                            <li><%= message %></li>
-                        <% end %>
-                    </ul>
-                </div>
-            <% end %>
-
+            <%# エラー通知用 %>
+            <%= render 'layouts/product_errors' %>
 
             <%= form_for(@product, url: admins_products_path) do |f| %>
                 <div class="field form-group col-6">
@@ -23,36 +14,50 @@
                     <%= f.text_field :name, autocomplete: "name", placeholder:"", class:"col-md-10" %>
                 </div>
 
+                <div class="pb-3"></div>
+
                 <div class="field form-group col-6">    
                     <%= f.label :product_image, "商品写真" %><br>
                     <%= attachment_image_tag @product, :product_image, :fill, 200, 200, class: "border", fallback: "no-image.jpg", size:'200x200' %>
                     <%= f.attachment_field :product_image %>
                 </div>
 
+                <div class="pb-3"></div>
+
                 <div class="field form-group col-6">
                     <%= f.label :price, "価格" %><br>
                     <%= f.text_field :price, autocomplete: "price", placeholder:"",  class:"col-5" %> 円
                 </div>
 
+                <div class="pb-3"></div>
+
                 <div class="field form-group col-6">
-                    <%= f.label :category, "商品カテゴリ" %><br>
-                    <%# <%= f.select :category, ['島のお酒', '島の食べ物', '島のドリンク', '島のフルーツ' ,'島のおすすめ'], {include_blank: "カテゴリ選択"}, autocomplete: "category", class:"col-md-10" %> %>
+                    <%= f.label :category_id, "商品カテゴリ" %><br>
+                    <%= f.collection_select :category_id, Category.all ,:id, :category_name, :prompt => "カテゴリ選択", autocomplete: "category", class:"col-md-10" %>
                 </div>
+
+                <div class="pb-3"></div>
                 
                 <div class="field form-group col-6">
                     <%= f.label :explanation, "商品説明（200文字以内）" %><br>
                     <%= f.text_area :explanation, autocomplete: "explanation", placeholder:"",  class:"col-md-10" %>
                 </div>
 
+                <div class="pb-3"></div>
+
                 <div class="field form-group col-6">
                     <%= f.label :stock, "ストック数" %><br>
                     <%= f.text_field :stock, autocomplete: "stock", placeholder:"",  class:"col-5" %> 個
                 </div>
 
+                <div class="pb-3"></div>
+
                 <div class="field form-group col-6">
                     <%= f.label :producer_id, "生産者名" %><br>
-                    <%= f.collection_select :producer_id, Producer.all, :id, :producer_name, autocomplete: "producer_id", placeholder:"",  class:"col-5" %>
+                    <%= f.collection_select :producer_id, Producer.all, :id, :producer_name, :prompt => "生産者を選択", autocomplete: "producer_id", class:"col-5" %>
                 </div>
+
+                <div class="pb-3"></div>
 
                 <div class="actions form-group">
                     <%= f.submit "登録する", class:"btn btn-primary" %>

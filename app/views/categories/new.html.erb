@@ -1,0 +1,27 @@
+<div class="container border my-3">
+    <div class="row m-3">
+
+        <div class="col">
+
+            <h3>商品カテゴリ作成ページ</h3>
+
+            <%# エラー通知用 %>
+            <%= render 'layouts/category_errors' %>
+
+            <%= form_for(@category, url: admins_categories_path) do |f| %>
+                <div class="field form-group col-6">
+                    <%= f.label :category_name, "カテゴリ名" %><br>
+                    <%= f.text_field :category_name, autocomplete: "category_name", placeholder:"", class:"col-md-10" %>
+                </div>
+
+                <div class="actions form-group">
+                    <%= f.submit "登録する", class:"btn btn-primary" %>
+                </div>
+            <% end %>
+            <br>
+            <p><%= link_to 'カテゴリ一覧ページ', admins_categories_path %> | <%= link_to 'ホームへ戻る', admins_path %></p>
+
+        </div>
+
+    </div>
+</div>

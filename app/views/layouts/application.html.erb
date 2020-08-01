@@ -14,7 +14,7 @@
 <body>
     <%# _flash  %>
     <%= render 'layouts/flash', flash: flash %>
-    <div style="background-color: #fffffe; padding-top: 100px;">
+    <div style="background-color: #fffffe; padding-top: 75px;">
 
 
         <%# ヘッダー %>
@@ -24,7 +24,9 @@
                 <%# 管理者用ヘッダー %>
                 <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-3" style="background-color: #000000;">
                     <%# ロゴ %>
-                    <%= link_to "Hachijo-Shop管理者ページ", admins_path, class:"navbar-brand"%>
+                    <%= link_to admins_path, class:"navbar-brand mx-2" do %>
+                        <div class="admin-logo"></div>
+                    <% end %>
                     
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -39,8 +41,8 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <%= link_to "商品一覧", admins_products_path, class:"dropdown-item" %>
                                     <div class="dropdown-divider"></div>
-                                    <%= link_to "商品追加", new_admins_product_path, class:"dropdown-item" %>
-                                </div>
+                                    <%= link_to "商品カテゴリ一覧", admins_categories_path, class:"dropdown-item" %>
+                                    </div>
                             </li>
                             <li class="nav-item mx-1 dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,7 +102,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mr-auto ml-4">
                             <li class="nav-item mx-1">
-                                <%= link_to "商品一覧", list_products_path, class:"nav-link"%>
+                                <%= form_with url: search_products_path, method: :get, local: true, class:"" do |f| %>
+                                    <%= f.text_field :name, placeholder:"キーワードから探す", class:"" %>
+                                    <%= f.button :type => 'submit', class:'btn btn-sm btn-myh' do %><i class="fas fa-search"></i><% end %>
+                                <% end %>
                             </li>
                         </ul>
 
@@ -133,7 +138,7 @@
                 <%# ゲスト用ヘッダー %>
                 <nav class="navbar fixed-top navbar-expand-lg navbar-light p-3" style="background-color: #bae8e8; border-bottom: 3px solid #272343; border-top: 3px solid #272343;">
                     <%# ロゴ %>
-                    <%= link_to "Hachijo-shop", root_path, class:"navbar-brand", :style=>"color: #272343;" %></i>
+                    <%= link_to "Hachijo-shop", root_path, class:"navbar-brand", :style=>"color: #272343;" %>
                     
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -141,7 +146,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mr-auto ml-4">
                             <li class="nav-item mx-1">
-                                <%= link_to "商品一覧", list_products_path, class:"nav-link"%>
+                                <%= form_with url: search_products_path, method: :get, local: true, class:"" do |f| %>
+                                    <%= f.text_field :name, placeholder:"キーワードから探す", class:"" %>
+                                    <%= f.button :type => 'submit', class:'btn btn-sm btn-myh' do %><i class="fas fa-search"></i><% end %>
+                                <% end %>
                             </li>
                         </ul>
 
@@ -179,25 +187,13 @@
 
             <% if admin_signed_in? %>
                 <div class="container-fluid" style="background-color: #000000; border-top: 3px solid #272343;">
-                    <section class="cta bg-blue-grey text-white py-4 border-bottom border-secondary">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <h6>管理者用ページ</h6>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <section class="cta bg-blue-grey text-white py-4 border-bottom border-secondary"></section>
                     <section class="footer bg-blue-grey text-grey ">
                         <div class="copyright text-center py-3 bg-blue-grey border-top border-secondary">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12 text-white">
-                                        <p>© 2020 Hachijo-shop All Rights Reserved</p>
+                                        © 2020 Hachijo-shop All Rights Reserved
                                     </div>
                                 </div>
                             </div>
@@ -279,13 +275,16 @@
         <%# フッター終了 %>
 
         <%# ページトップへ戻るボタン %>
-        <div class="">
+        <% if admin_signed_in? %>
+
+        <% else %>
             <span id="back">
                 <a href="#">
                     <i class="fas fa-angle-up" style="font-size: 40px; color: #ffd803;"></i>
                 </a>
             </span>
-        </div>
+        <% end %>
+
     </div>
   </body>
 </html>

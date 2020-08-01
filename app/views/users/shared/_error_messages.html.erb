@@ -7,9 +7,7 @@
                   count: resource.errors.count,
                   resource: resource.class.model_name.human.downcase) %>
       </h6>
-
       <div class="pt-2"></div>
-
       <ul>
         <% resource.errors.full_messages.each do |message| %>
           <li style="font-size: 12px;"><%= message %></li>

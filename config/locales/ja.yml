@@ -23,3 +23,52 @@ ja:
         long: "%Y年%m月%d日(%a) %H時%M分%S秒 %Z"
       am: "午前"
       pm: "午後"
+
+
+
+
+
+
+    # activerecord:
+    #   errors:
+    #     product:
+    #       attributes:
+    #         product_name:
+    #           taken: "は既に使用されています。"
+    #           blank: "が入力されていません。"
+    #           too_short: "は%{count}文字以上に設定して下さい。"
+    #           too_long: "は%{count}文字以下に設定して下さい。"
+    #           invalid: "は有効でありません。"
+    #         product_image_id:
+    #           taken: "は既に使用されています。"
+    #           blank: "が入力されていません。"
+    #           too_short: "は%{count}文字以上に設定して下さい。"
+    #           too_long: "は%{count}文字以下に設定して下さい。"
+    #           invalid: "は有効でありません。"
+    #         price:
+    #           taken: "は既に使用されています。"
+    #           blank: "が入力されていません。"
+    #           too_short: "は%{count}文字以上に設定して下さい。"
+    #           too_long: "は%{count}文字以下に設定して下さい。"
+    #           invalid: "は有効でありません。"
+    #         product_id:
+    #           taken: "は既に使用されています。"
+    #           blank: "が入力されていません。"
+    #           too_short: "は%{count}文字以上に設定して下さい。"
+    #           too_long: "は%{count}文字以下に設定して下さい。"
+    #           invalid: "は有効でありません。"
+
+
+    # attributes:
+    #   producer:
+    #     producer_name: "生産者名"
+
+    # models:
+    #   product: "商品"
+    #   category: "商品カテゴリ"
+    #   producer: "生産者"
+
+
+
+      # まだ上は戸チューーーーーーーーー
+

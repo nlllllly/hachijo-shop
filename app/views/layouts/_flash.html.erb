@@ -2,7 +2,7 @@
 <% flash.each do |name, msg| %>
     <% if name == "notice" %>
         <div class="flash-back"></div>
-        <%= content_tag :div, msg, :class => "flash-notice alert alert-success" if msg.is_a?(String) %>
+        <%= content_tag :div, msg, :class => "flash-notice alert alert-success px-5 py-3" if msg.is_a?(String) %>
     <% elsif name == "alert" %>
         <%= content_tag :div, msg, :class => "flash-alert alert alert-danger" if msg.is_a?(String) %>
     <% end %>

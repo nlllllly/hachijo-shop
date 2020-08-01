@@ -1,38 +1,47 @@
 
-<div class="container">
-    <h3>顧客一覧</h3>
+<div class="container border my-3">
+    <div class="m-4">
+        <div class="row mb-3">
+            <div class="mt-1">
+                <h3>顧客一覧</h3>
+            </div>
+            <div class="mx-auto"></div>
+            <div class="mr-3">
 
-    <div class="row">
-        <div class="col">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>登録メールアドレス</th>
-                        <th>顧客名（フリガナ）</th>
-                        <th>顧客名</th>
-                        <th>性別</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @users.each do |user| %>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td><%= user.id %></td>
-                            <td><%= user.email %></td>
-                            <td><%= user.last_name_roman %> <%= user.first_name_roman %></td>
-                            <td><%= user.last_name %> <%= user.first_name %></td>
-                            <td><%= user.sex %></td>
-                            <td><%= link_to "削除", user_registration_path(user.id), class:"btn-sm btn-danger", method:"delete", data:{ confirm: "本当に削除しますか？" } %></td>
-                            </tr>
-                    <% end %>
-                </tbody>
-            </table>
+                            <th>id</th>
+                            <th>登録メールアドレス</th>
+                            <th>顧客名（フリガナ）</th>
+                            <th>顧客名</th>
+                            <th>性別</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @users.each do |user| %>
+                            <tr>
+                                <td><%= user.id %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.last_name_roman %> <%= user.first_name_roman %></td>
+                                <td><%= user.last_name %> <%= user.first_name %></td>
+                                <td><%= user.sex %></td>
+                                <td><%= link_to "削除", user_registration_path(user.id), class:"btn-sm btn-danger", method:"delete", data:{ confirm: "本当に削除しますか？" } %></td>
+                                </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="mx-auto mt-4">
-            <%= paginate @users %>
+        <div class="row">
+            <div class="mx-auto mt-4">
+                <%= paginate @users %>
+            </div>
         </div>
     </div>
 </div>

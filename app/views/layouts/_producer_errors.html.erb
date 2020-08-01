@@ -1,0 +1,16 @@
+<%# カテゴリ追加・カテゴリ編集時のエラー通知 %>
+<% if @producer.errors.any? %>
+    <div class="col-12">
+        <div class="alert alert-danger" role="danger" id="error_explanation">
+            <h6 class="alert-heading">
+                <%= @producer.errors.count%> つの項目でエラーがあります！
+            </h6>
+            <div class="pt-2"></div>
+            <ul>
+                <% @producer.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+<% end %>
