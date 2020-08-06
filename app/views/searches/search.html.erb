@@ -4,10 +4,18 @@
         <%= render 'layouts/search' %>
 
         <div class="col my-4 p-4" style="background-color: #EAEAEA; border: 3px solid #272343; border-radius: 5px;">
+        
+            <h5>商品検索結果 「 <%= params[:word]%> 」</h5>
+            <h6>「 <%= @products.count %>件 」ヒットしました</h6>
 
-            <h3>商品一覧ページ</h3>
-
+            <% if @products.exists? %>
                 <%= render 'products/product_lists' %>
+
+            <% else %>
+                <div class="py-5">
+                    <h6 class="text-center">商品が見つかりませんでした</h6>
+                </div>
+            <% end %>
 
             <div class="row">
                 <div class="mx-auto mt-4">

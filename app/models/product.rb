@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
-
+    
+    has_many :favorites, dependent: :destroy
     # belongs_to :user, optional: true
     belongs_to :producer
     belongs_to :category
@@ -13,5 +14,10 @@ class Product < ApplicationRecord
     validates :producer_id, presence: true
 
     attachment :product_image
-    
+
+    # favoritesでそのユーザによっていいねがされているか判別する
+    def favorited_by?(user)
+        favorites.where(user_id: user.id).exists?
+    end
+
 end

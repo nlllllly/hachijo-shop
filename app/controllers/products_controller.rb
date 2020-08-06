@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
   # 非会員でも「:index, :show, :search」を可能にする。
-  skip_before_action :authenticate_user!, only: [:list, :show, :search]
-  skip_before_action :authenticate_admin!, only: [:list, :show, :search]
+  skip_before_action :authenticate_user!, only: [:list, :show]
+  skip_before_action :authenticate_admin!, only: [:list, :show]
   # User以外（Admin）は全ての操作ができる。
-  before_action :authenticate_user!, except: [:index, :list, :show, :search, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :list, :show, :new, :create, :edit, :update, :destroy]
 
 
   def index
@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
   end
   def list
     @products = Product.page(params[:page]).per(30)
+
   end
 
   def new
@@ -48,14 +49,6 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to admins_products_path, notice: '削除が完了しました！'
   end
-  def search
-    if params[:name].present?
-      @products = Product.page(params[:page]).per(30).where('name LIKE ?', "%#{params[:name]}%")
-    else
-      @products = Product.page(params[:page]).per(30).none
-    end
-  end
-
 
 
   private

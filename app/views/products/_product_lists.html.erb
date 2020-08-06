@@ -1,0 +1,21 @@
+            <div class="row">
+                <% @products.each do |product| %>
+                    <div class="mx-auto m-4 p-4 border _product">
+                        
+                        <div class="col">
+                            <%= link_to product_path(product.id) do %>
+                                <%= attachment_image_tag product, :product_image, :fill, 200, 200, class: "border", fallback: "no-image.jpg", size:'200x200' %>
+                            <% end %>
+                            <div class="pt-1"></div>
+                            <%= link_to product_path(product.id) do %>
+                                <h5><%= product.name %></h5>
+                            <% end %>
+
+                            <p><%= product.price %> 円</p>
+
+                            <%= link_to "商品の詳細をみる", product_path(product.id), class:"btn btn-myh col-12" %>
+                        </div>
+
+                    </div>
+                <% end %>
+            </div>

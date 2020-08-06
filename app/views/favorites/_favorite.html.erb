@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+    <% if product.favorited_by?(current_user) %>
+        <%=link_to product_favorites_path(product), method: :delete, class:"btn btn-myh", remote: true do %>
+        <i class="fas fa-star" style="font-size: 20px; color: yellow;"></i>
+        お気に入りに追加済み
+        <% end %>
+    <% else %>
+        <%=link_to product_favorites_path(product), method: :post, remote: true do %>
+        <i class="far fa-star" style="font-size: 20px; color: gray;"></i>
+        お気に入りに追加する
+        <% end %>
+    <% end %>
+<% end %>

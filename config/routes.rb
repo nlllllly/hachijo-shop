@@ -21,8 +21,10 @@ Rails.application.routes.draw do
   end
   resources :products, only: [:show] do 
     get :list, on: :collection
-    get :search, on: :collection
+    resource :favorites, only: [:create, :destroy]
   end
+  get 'search' => 'searches#search'
+  
   
   # カート関連 
   resources :carts, only: [:show]
