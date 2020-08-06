@@ -80,3 +80,5 @@ gem "refile-mini_magick"
 gem 'font-awesome-sass'
 
 gem 'kaminari'
+
+gem 'jp_prefecture'

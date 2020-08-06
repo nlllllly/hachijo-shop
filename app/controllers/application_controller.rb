@@ -48,9 +48,45 @@ class ApplicationController < ActionController::Base
 
     protected
       def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :last_name_roman, :first_name_roman, :last_name, :first_name, :sex, :birth_date])
-        devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :last_name_roman, :first_name_roman, :last_name, :first_name, :sex, :birth_date])
-        devise_parameter_sanitizer.permit(:accout_update, keys: [:email, :last_name_roman, :first_name_roman, :last_name, :first_name, :sex, :birth_date])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [
+          :email, 
+          :last_name_roman, 
+          :first_name_roman, 
+          :last_name, :first_name, 
+          :sex, 
+          :birth_date,
+          :postcode,
+          :prefecture_name,
+          :address_city,
+          :address_street,
+          :address_building
+          ])
+        devise_parameter_sanitizer.permit(:sign_in, keys: [
+          :email, 
+          :last_name_roman, 
+          :first_name_roman, 
+          :last_name, :first_name, 
+          :sex, 
+          :birth_date,
+          :postcode,
+          :prefecture_name,
+          :address_city,
+          :address_street,
+          :address_building
+          ])
+        devise_parameter_sanitizer.permit(:accout_update, keys: [
+          :email, 
+          :last_name_roman, 
+          :first_name_roman, 
+          :last_name, :first_name, 
+          :sex, 
+          :birth_date,
+          :postcode,
+          :prefecture_name,
+          :address_city,
+          :address_street,
+          :address_building
+          ])
       end
 
 
